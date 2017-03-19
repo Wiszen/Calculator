@@ -4,6 +4,7 @@
 package pl.uksw.wiszenko;
 
 import java.util.Scanner;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Mikolaj
@@ -11,45 +12,46 @@ import java.util.Scanner;
  */
 public class Menu {
 	private static final String[] options = new String[]{"Obliczanie", "Import z pliku", "Wyjscie z programu"};
-	private boolean czyKoniec;
-	private int input;
-	
-	
+	private boolean endOfProgram;
+	private String input;
 
 	public Menu(){
-		this.setCzyKoniec(false);
-		for(int i = 1; i <= 3; i++){
-			System.out.println(i + ". " + options[i - 1]);
-		}
-		
-		System.out.print("Wpisz liczbe: ");
+		this.setEndOfProgram(false);
 		Scanner keyboard = new Scanner(System.in);
-		switch (keyboard.nextInt()) {
-		case 1:
-			do{
+		while(!this.isEndOfProgram()){
+			for(int i = 1; i <= 3; i++){
+				System.out.println(i + ". " + options[i - 1]);
+			}
+			
+			System.out.print("Wpisz liczbe: ");
+			switch (keyboard.nextInt()) {
+			case 1:
+				input = keyboard.nextLine(); // Consume newline left-over
 				System.out.println("Prosze wpisywac rownania zakonczone \'=\' (wpisanie \"koniec\" zakonczy):");
-				this.setInput(keyboard.nextInt());
-			} while(new String("koniec").equals(this.getInput()));
-			break;
-
-		default:
-			break;
+				input = keyboard.nextLine();
+				while(!input.equals("koniec")){
+					new ArthmeticOperations().printResult(StringUtils.splitByCharacterType(input));
+					System.out.println("Prosze wpisywac rownania zakonczone \'=\' (wpisanie \"koniec\" zakonczy):");
+					input = keyboard.nextLine();
+				}
+				break;
+			case 3:
+				this.setEndOfProgram(true);
+				break;
+			default:
+				System.out.println("Wpisano zly klawisz. Sprobuj ponownie");
+				break;
+			}
 		}
+		System.out.println("Koniec programu.");
 		keyboard.close();
 	}
 	
-	public int getInput() {
-		return input;
+	private boolean isEndOfProgram() {
+		return endOfProgram;
 	}
 
-	public void setInput(int input) {
-		this.input = input;
-	}
-	public boolean isCzyKoniec() {
-		return czyKoniec;
-	}
-
-	public void setCzyKoniec(boolean czyKoniec) {
-		this.czyKoniec = czyKoniec;
+	private void setEndOfProgram(boolean czyKoniec) {
+		this.endOfProgram = czyKoniec;
 	}
 }

@@ -3,6 +3,7 @@
  */
 package pl.uksw.wiszenko;
 
+
 /**
  * @author Mikolaj
  *
@@ -13,7 +14,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		new Menu();
 
 	}
 
