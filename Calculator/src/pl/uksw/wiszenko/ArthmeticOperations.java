@@ -15,16 +15,13 @@ public class ArthmeticOperations {
 	}
 	
 	public void printResult(String[] devidedOperation){
-		System.out.println(devidedOperation[0]);
 		int a = Integer.parseInt(devidedOperation[0]);
-		System.out.println(devidedOperation[2]);
 		int b = Integer.parseInt(devidedOperation[2]);
-		System.out.println(devidedOperation[1]);
 		char operator = devidedOperation[1].charAt(0);
 		System.out.println(this.performSingleOperation(a, b, operator));
 	}
 	
-	public int performSingleOperation(int a, int b, char operator){
+	public int performSingleOperation(int a, int b, char operator) throws IllegalArgumentException{
 		if(operator == '+'){
 			return a + b;
 		}

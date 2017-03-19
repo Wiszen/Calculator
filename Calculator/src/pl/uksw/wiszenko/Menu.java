@@ -30,7 +30,11 @@ public class Menu {
 				System.out.println("Prosze wpisywac rownania zakonczone \'=\' (wpisanie \"koniec\" zakonczy):");
 				input = keyboard.nextLine();
 				while(!input.equals("koniec")){
-					new ArthmeticOperations().printResult(StringUtils.splitByCharacterType(input));
+					try{
+						new ArthmeticOperations().printResult(StringUtils.splitByCharacterType(input));
+					} catch(IllegalArgumentException e){
+						System.err.println(e.getMessage());
+					}
 					System.out.println("Prosze wpisywac rownania zakonczone \'=\' (wpisanie \"koniec\" zakonczy):");
 					input = keyboard.nextLine();
 				}
