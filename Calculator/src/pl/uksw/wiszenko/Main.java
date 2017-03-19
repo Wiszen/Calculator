@@ -1,16 +1,16 @@
-/**
- * 
- */
 package pl.uksw.wiszenko;
 
 
 /**
- * @author Mikolaj
- *
+ * 
+ *	Klasa glowna zawierajaca tylko metode statyczna main
+ *	@author Mikolaj
  */
 public class Main {
 
 	/**
+	 * Metoda odpalajaca program. Nie obsluguje przekazanych przelacznkow args.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
